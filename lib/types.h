@@ -4,8 +4,8 @@
 
 #include <array>
 #include <cstdint>
-#include <utility>
 #include <ostream>
+#include <utility>
 
 namespace game {
 

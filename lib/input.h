@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <string>
 
-
 namespace input {
 
 int32_t enter_positive_value(const std::string &parameter);

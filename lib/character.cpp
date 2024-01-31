@@ -4,13 +4,14 @@
 #include "input.h"
 #include "utils.h"
 
-#include <cassert>
 #include <chrono>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 
 namespace game {
+
+int32_t Character::total_damage() const { return melee_damage + ranged_damage; }
 
 std::ostream &operator<<(std::ostream &out, const Character &character)
 {
@@ -20,9 +21,12 @@ std::ostream &operator<<(std::ostream &out, const Character &character)
   out << "Power: " << character.power << "\n";
   out << "Melee damage: " << character.melee_damage << "\n";
   out << "Ranged damage: " << character.ranged_damage << "\n";
+  out << "Total damage: " << character.total_damage();
 
   return out;
 }
+
+bool operator<(const Character &lhs, const Character &rhs) { return lhs.total_damage() < rhs.total_damage(); }
 
 Character create_character()
 {
@@ -128,6 +132,20 @@ Character create_random_character()
     .melee_damage = utils::get_random_number(),
     .ranged_damage = utils::get_random_number(),
   };
+}
+
+std::vector<game::Character> generate_characters(const size_t number_of_characters)
+{
+  std::vector<game::Character> result;
+  result.reserve(number_of_characters);
+
+  for (auto i = 0; i < number_of_characters; ++i)
+  {
+    result.emplace_back(game::create_random_character());
+    std::cout << "\n" << result.back() << "\n";
+  }
+
+  return result;
 }
 
 } // namespace game
