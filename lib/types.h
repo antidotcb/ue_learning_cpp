@@ -8,6 +8,13 @@
 
 namespace game {
 
+enum class DamageType : int8_t
+{
+  Healing = -1,
+  NoDamage = 0,
+  Damage = 1
+};
+
 enum class Class : int8_t
 {
   Mage = 1,

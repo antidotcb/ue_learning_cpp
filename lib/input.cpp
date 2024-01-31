@@ -37,6 +37,24 @@ int32_t enter_positive_value(const std::string &parameter)
   return value;
 }
 
+int32_t enter_any_value(const std::string &parameter)
+{
+  if (parameter.empty())
+  {
+    throw std::runtime_error("Title can't be empty");
+  }
+
+  int32_t value;
+
+  std::cout << "\nEnter " << parameter << ": ";
+  std::cout.flush();
+
+  std::cin >> value;
+  std::cin.ignore();
+
+  return value;
+}
+
 std::string enter_string(const std::string &title)
 {
   std::string result;
