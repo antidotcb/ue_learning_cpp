@@ -31,8 +31,7 @@ void loop(Character &character)
     std::cout << "\nHealth: " << character.health;
   } while (character.health > 0);
 
-  std::cout << "\n\nGame statistics\n";
-  stats.print();
+  std::cout << "\n\nGame statistics\n" << stats;
 
   std::cout << "\nGame over\n";
   std::cout.flush();
@@ -43,7 +42,7 @@ void loop(Character &character)
 int main()
 {
   auto character = game::get_default_character();
-  game::print_character(character);
+  std::cout << "Character\n" << character;
   game::loop(character);
   return 0;
 }

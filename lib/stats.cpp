@@ -1,9 +1,9 @@
 #include "stats.h"
 
 #include <algorithm>
-#include <iostream>
 #include <limits>
 #include <numeric>
+#include <ostream>
 
 namespace utils {
 
@@ -16,63 +16,20 @@ DamageType damage_type(const int32_t damage)
   return damage == 0 ? DamageType::NoDamage : damage > 0 ? DamageType::Damage : DamageType::Healing;
 }
 
-void print_list(const std::vector<size_t> &damage_turns)
+std::ostream &operator<<(std::ostream &out, const std::vector<size_t> &damage_turns)
 {
   for (const auto index: damage_turns)
   {
-    std::cout << index << " ";
+    out << index << " ";
   }
+  return out;
 }
 
 } // namespace
 
 void Stats::add_damage(const int32_t damage) { damage_.push_back(damage); }
 
-void Stats::print() const
-{
-  std::cout << "\nDamage table: \n";
-  for (auto i = 0; i < damage_.size(); ++i)
-  {
-    std::cout << i + 1 << " " << damage_[i] << "\n";
-  }
-  std::cout << "\n";
-
-  const auto max_damage = get_max_damage();
-  const auto min_damage = get_min_damage();
-
-  std::cout << "\nMax Damage: " << (max_damage.has_value() ? std::to_string(max_damage.value()) : "N/A");
-  if (max_damage.has_value())
-  {
-    const auto damage_turns = get_damage_turns(max_damage.value());
-    std::cout << " at turns: ";
-    print_list(damage_turns);
-  }
-
-  std::cout << "\nMin Damage: " << (min_damage.has_value() ? std::to_string(min_damage.value()) : "N/A");
-  if (min_damage.has_value())
-  {
-    const auto damage_turns = get_damage_turns(min_damage.value());
-    std::cout << " at turns: ";
-    print_list(damage_turns);
-  }
-  const auto total_healing = total(DamageType::Healing);
-  std::cout << "\nTotal Healing: " << total_healing;
-  if (total_healing > 0)
-  {
-    const auto healing_turns = get_healing_turns();
-    std::cout << " at turns: ";
-    print_list(healing_turns);
-  }
-
-  const auto total_damage = total(DamageType::Damage);
-  std::cout << "\nTotal Damage: " << total_damage;
-
-  const auto no_damage_present = no_damage();
-  std::cout << "\nNo Damage Present: " << (no_damage_present ? "Yes" : "No");
-
-  std::cout << "\n";
-  std::cout.flush();
-}
+const std::vector<int32_t> &Stats::get_damage() const { return damage_; }
 
 std::vector<size_t> Stats::get_healing_turns() const
 {
@@ -134,6 +91,46 @@ std::vector<size_t> Stats::get_damage_turns(const int32_t damage) const
   }
 
   return result;
+}
+
+std::ostream &operator<<(std::ostream &out, const Stats &stats)
+{
+  const auto &damage_ = stats.get_damage();
+  out << "\nDamage table: \n";
+  for (auto i = 0; i < damage_.size(); ++i)
+  {
+    out << i + 1 << " " << damage_[i] << "\n";
+  }
+  out << "\n";
+
+  const auto max_damage = stats.get_max_damage();
+  const auto min_damage = stats.get_min_damage();
+
+  out << "\nMax Damage: " << (max_damage.has_value() ? std::to_string(max_damage.value()) : "N/A");
+  if (max_damage.has_value())
+  {
+    out << " at turns: " << stats.get_damage_turns(max_damage.value());
+  }
+
+  out << "\nMin Damage: " << (min_damage.has_value() ? std::to_string(min_damage.value()) : "N/A");
+  if (min_damage.has_value())
+  {
+    out << " at turns: " << stats.get_damage_turns(min_damage.value());
+  }
+  const auto total_healing = stats.total(DamageType::Healing);
+  out << "\nTotal Healing: " << total_healing;
+  if (total_healing > 0)
+  {
+    out << " at turns: " << stats.get_healing_turns();
+  }
+
+  const auto total_damage = stats.total(DamageType::Damage);
+  out << "\nTotal Damage: " << total_damage;
+
+  const auto no_damage_present = stats.no_damage();
+  out << "\nNo Damage Present: " << (no_damage_present ? "Yes" : "No") << "\n";
+
+  return out;
 }
 
 } // namespace utils

@@ -11,6 +11,7 @@ add_library(game_lib STATIC
         lib/input.h
         lib/stats.cpp
         lib/stats.h
+        lib/types.cpp
         lib/utils.cpp
         lib/utils.h
 )

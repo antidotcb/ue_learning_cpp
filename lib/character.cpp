@@ -7,27 +7,21 @@
 #include <cassert>
 #include <chrono>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 namespace game {
 
-void print_character(const Character &result)
+std::ostream &operator<<(std::ostream &out, const Character &character)
 {
-  const auto class_name_iter = std::find_if(g_ClassNames.begin(), g_ClassNames.end(), [&result](const auto &class_name) {
-    return class_name.first == result.of_class;
-  });
-  assert(class_name_iter != g_ClassNames.end());
-  if (class_name_iter == g_ClassNames.end())
-  {
-    throw std::runtime_error("Unknown character class");
-  }
+  out << "Name: " << character.name << "\n";
+  out << "Class: " << character.of_class << "\n";
+  out << "Health: " << character.health << "\n";
+  out << "Power: " << character.power << "\n";
+  out << "Melee damage: " << character.melee_damage << "\n";
+  out << "Ranged damage: " << character.ranged_damage << "\n";
 
-  std::cout << "Character\n";
-  std::cout << "Name: " << result.name << "\n";
-  std::cout << "Health: " << result.health << "\n";
-  std::cout << "Class: " << class_name_iter->second << "\n";
-
-  std::cout.flush();
+  return out;
 }
 
 Character create_character()
@@ -115,6 +109,24 @@ Character get_default_character()
     .max_health = 100,
     .health = 100,
     .power = 10,
+  };
+}
+
+Character create_random_character()
+{
+  static size_t character_counter = 0;
+  character_counter++;
+
+  const auto health = 50 + utils::get_random_number() % 10 * 10;
+
+  return {
+    .name = "Character #" + std::to_string(character_counter),
+    .of_class = utils::get_random_number() % 2 ? Class::Warrior : Class::Mage,
+    .max_health = health,
+    .health = health,
+    .power = utils::get_random_number(),
+    .melee_damage = utils::get_random_number(),
+    .ranged_damage = utils::get_random_number(),
   };
 }
 

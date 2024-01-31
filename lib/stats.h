@@ -13,9 +13,8 @@ class Stats
 public:
   void add_damage(int32_t damage);
 
-  void print() const;
+  [[nodiscard]] const std::vector<int32_t> &get_damage() const;
 
-private:
   [[nodiscard]] std::optional<int32_t> get_max_damage() const;
 
   [[nodiscard]] std::optional<int32_t> get_min_damage() const;
@@ -31,5 +30,7 @@ private:
 private:
   std::vector<int32_t> damage_;
 };
+
+std::ostream &operator<<(std::ostream &out, const Stats &stats);
 
 } // namespace utils
