@@ -9,6 +9,8 @@ add_library(game_lib STATIC
         lib/constants.h
         lib/input.cpp
         lib/input.h
+        lib/selector.cpp
+        lib/selector.h
         lib/stats.cpp
         lib/stats.h
         lib/types.cpp
