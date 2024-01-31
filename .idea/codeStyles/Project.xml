@@ -38,5 +38,8 @@
         <rule entity="CLASS_MEMBER_FIELD,STRUCT_MEMBER_FIELD,PARAMETER,LOCAL_VARIABLE" visibility="ANY" specifier="CONST,STATIC" prefix="k" style="PASCAL_CASE" suffix="" />
       </rules>
     </Objective-C-extensions>
+    <clangFormatSettings>
+      <option name="ENABLED" value="true" />
+    </clangFormatSettings>
   </code_scheme>
 </component>
