@@ -1,66 +1,72 @@
-# Generated from CLion C/C++ Code Style settings
+---
 BasedOnStyle: LLVM
-AccessModifierOffset: -1
-AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: None
-AlignOperands: Align
+AlignArrayOfStructures: Left
+AlignEscapedNewlines: Left
+AlignOperands: AlignAfterOperator
 AllowAllArgumentsOnNextLine: false
-AllowAllConstructorInitializersOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortBlocksOnASingleLine: Always
+AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: All
-AllowShortIfStatementsOnASingleLine: Always
-AllowShortLambdasOnASingleLine: All
-AllowShortLoopsOnASingleLine: true
-AlwaysBreakAfterReturnType: None
+AllowShortLambdasOnASingleLine: Empty
 AlwaysBreakTemplateDeclarations: Yes
-BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterCaseLabel: false
-  AfterClass: false
-  AfterControlStatement: Never
-  AfterEnum: false
-  AfterFunction: false
-  AfterNamespace: false
-  AfterUnion: false
-  BeforeCatch: false
-  BeforeElse: false
-  IndentBraces: false
+  AfterClass: true
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: true
+  AfterStruct: true
+  AfterUnion: true
+  BeforeCatch: true
+  BeforeElse: true
   SplitEmptyFunction: false
-  SplitEmptyRecord: true
-BreakBeforeBinaryOperators: None
-BreakBeforeTernaryOperators: true
-BreakConstructorInitializers: BeforeColon
-BreakInheritanceList: BeforeColon
-ColumnLimit: 0
-CompactNamespaces: false
-ContinuationIndentWidth: 4
-IndentCaseLabels: true
-IndentPPDirectives: None
-IndentWidth: 2
-KeepEmptyLinesAtTheStartOfBlocks: true
-MaxEmptyLinesToKeep: 2
-NamespaceIndentation: None
-ObjCSpaceAfterProperty: false
-ObjCSpaceBeforeProtocolList: false
-PointerAlignment: Right
+  SplitEmptyNamespace: false
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Custom
+ColumnLimit: 140
+ContinuationIndentWidth: 2
+DeriveLineEnding: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^"(.*)/'
+    Priority: 2
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^"(.*)'
+    Priority: 1
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^<(sys|ext|arpa|net|netinet)/'
+    Priority: 7
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^<(.*)/'
+    Priority: 4
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^<.*\.h'
+    Priority: 6
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^<([^./]*)>'
+    Priority: 5
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '.*'
+    Priority: 8
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^("|<(gtest|gmock)/)'
+    Priority: 10
+    SortPriority: 0
+    CaseSensitive: false
+IncludeIsMainRegex: '(_tests)?$'
+IndentGotoLabels: false
+PenaltyReturnTypeOnItsOwnLine: 10000
 ReflowComments: false
 SpaceAfterCStyleCast: true
-SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false
-SpaceBeforeAssignmentOperators: true
-SpaceBeforeCpp11BracedList: false
-SpaceBeforeCtorInitializerColon: true
-SpaceBeforeInheritanceColon: true
-SpaceBeforeParens: ControlStatements
-SpaceBeforeRangeBasedForLoopColon: true
-SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 0
-SpacesInAngles: false
-SpacesInCStyleCastParentheses: false
+SpaceBeforeRangeBasedForLoopColon: false
 SpacesInContainerLiterals: false
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
-TabWidth: 4
-UseTab: Never
+Standard: c++17
+TabWidth: 2
+...
