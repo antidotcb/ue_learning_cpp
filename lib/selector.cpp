@@ -17,18 +17,20 @@ std::map<game::Class, size_t> get_best_by_class(const std::vector<game::Characte
   std::map<game::Class, size_t> result;
   for (auto i = 0; i < characters.size(); ++i)
   {
-    const auto character_class = characters[i].of_class;
+    const auto &character = characters[i];
+    const auto character_class = character.of_class;
     if (result.find(character_class) == result.end())
     {
       result[character_class] = i;
+      continue;
     }
-    else
+
+    const auto best_character_index = result[character_class];
+    const auto &best_character = characters[best_character_index];
+
+    if (best_character < character)
     {
-      const auto best_character_index = result[character_class];
-      if (characters[best_character_index] < characters[i])
-      {
-        result[character_class] = i;
-      }
+      result[character_class] = i;
     }
   }
 
