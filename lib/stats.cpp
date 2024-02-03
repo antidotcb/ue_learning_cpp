@@ -4,6 +4,7 @@
 #include <limits>
 #include <numeric>
 #include <ostream>
+#include <string>
 
 namespace utils {
 
