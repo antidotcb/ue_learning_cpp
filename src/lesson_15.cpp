@@ -1,10 +1,10 @@
 #include "lesson_15.h"
 
-#include <iostream>
+#include "character.h"
+#include "input.h"
+#include "selector.h"
 
-#include <character.h>
-#include <input.h>
-#include <selector.h>
+#include <iostream>
 
 int lesson_15_task()
 {
