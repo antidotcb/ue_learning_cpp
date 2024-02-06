@@ -1,3 +1,3 @@
 #pragma once
 
-int lesson_15_task();
+[[maybe_unused]] int lesson_15_task();
